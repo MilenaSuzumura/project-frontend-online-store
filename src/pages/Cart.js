@@ -1,5 +1,4 @@
 import React from 'react';
-import { getProductId } from '../services/api';
 
 export default class Cart extends React.Component {
   constructor() {
@@ -9,27 +8,38 @@ export default class Cart extends React.Component {
     };
   }
 
-  // componentDidMount = () => {
-  //   const storage = JSON.parse(localStorage.getItem('cart'));
-  //     this.setState((prevState) ={
-  //       cart: [...prevState.cart, id],
-  //   })
-  // }
-
   componentDidMount = () => {
     const storage = JSON.parse(localStorage.getItem('cart'));
-    this.setState({ cart: storage });
+    const cont = [];
+
+    if (storage !== null) {
+      let qnt = 1;
+      for (let i = 0; i < storage.length; i += 1) {
+        if (i < storage.length - 1 && storage[i].nome === storage[i + 1].nome) {
+          qnt += 1;
+        } else {
+          cont.push({ nome: storage[i].nome, preco: storage[i].preco, qnt });
+          qnt = 1;
+        }
+      }
+
+      this.setState({ cart: cont });
+    }
   }
 
   render() {
-    console.log(this.state.cart);
     const { cart } = this.state;
     return (
       cart.length > 0 ? (
         cart.map((item) => (
           <div key={ item.nome }>
-            <p>{item.nome}</p>
+            <p data-testid="shopping-cart-product-name">{item.nome}</p>
             <p>{item.preco}</p>
+            <p data-testid="shopping-cart-product-quantity">
+              Quantidade:
+              {' '}
+              {item.qnt}
+            </p>
           </div>
         ))
       ) : (
@@ -40,20 +50,3 @@ export default class Cart extends React.Component {
     );
   }
 }
-
-// cartItems.length === 0
-//             ? <h1 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h1>
-//             : cartItems.map(({ id, price, title, qnt }) => (
-//               <div
-//                 key={ id }
-//               >
-//                 <p>
-//                   {`R$ ${price}`}
-//                 </p>
-//                 <p data-testid="shopping-cart-product-name">
-//                   {title}
-//                 </p>
-//                 <p data-testid="shopping-cart-product-quantity">
-//                   {qnt}
-//                 </p>
-//               </div>
