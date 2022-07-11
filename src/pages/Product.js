@@ -24,13 +24,13 @@ class Product extends React.Component {
     const { title, thumbnail, price, warranty } = product;
     return (
       <div data-testid="product-detail-link">
-        <p data-testid="product-detail-name">
+        <p id="img8" data-testid="product-detail-name">
           { title }
         </p>
         <p>
           { price }
         </p>
-        <img src={ thumbnail } alt={ title } />
+        <img id="img1" src={ thumbnail } alt={ title } />
         <p>{ warranty }</p>
       </div>
     );
