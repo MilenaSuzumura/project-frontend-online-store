@@ -20,3 +20,9 @@ export async function getCategoriesId(id) {
     .then((response) => response.json());
   return categoryById;
 }
+
+export async function getProductId(id) {
+  const productId = await fetch(`https://api.mercadolibre.com/items/${id}`)
+    .then((response) => response.json());
+  return productId;
+}
