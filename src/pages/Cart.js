@@ -27,6 +27,32 @@ export default class Cart extends React.Component {
     }
   }
 
+  handleclickIncrease = ({ target }) => {
+    const { cart } = this.state;
+    const stateCart = cart.map((element) => {
+      if (element.nome === target.name) {
+        element.qnt += 1;
+      }
+      return element;
+    });
+    this.setState({
+      cart: stateCart,
+    });
+  }
+
+  handleclickDecrease = ({ target }) => {
+    const { cart } = this.state;
+    const stateCart = cart.map((element) => {
+      if (element.nome === target.name && element.qnt > 1) {
+        element.qnt -= 1;
+      }
+      return element;
+    });
+    this.setState({
+      cart: stateCart,
+    });
+  }
+
   render() {
     const { cart } = this.state;
     return (
@@ -37,9 +63,26 @@ export default class Cart extends React.Component {
             <p>{item.preco}</p>
             <p data-testid="shopping-cart-product-quantity">
               Quantidade:
-              {' '}
               {item.qnt}
             </p>
+            <button
+              type="button"
+              data-testid="product-increase-quantity"
+              onClick={ this.handleclickIncrease }
+              name={ item.nome }
+            >
+              +
+
+            </button>
+            <button
+              type="button"
+              data-testid="product-decrease-quantity"
+              onClick={ this.handleclickDecrease }
+              name={ item.nome }
+            >
+              -
+
+            </button>
           </div>
         ))
       ) : (
