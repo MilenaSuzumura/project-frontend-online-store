@@ -94,7 +94,7 @@ export default class Home extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <Link id="teste02" to="/cart" data-testid="shopping-cart-button">
+        <Link className="link-carrinho" to="/cart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
         <aside>
@@ -113,16 +113,16 @@ export default class Home extends React.Component {
         </aside>
         <label htmlFor="input-pesquisa">
           <input
+            className="input-pesq"
             type="text"
             data-testid="query-input"
-            id="teste"
             name="input-pesquisa"
             value={ productName }
             onChange={ this.nameProduct }
           />
         </label>
         <button
-          id="teste01"
+          className="btn-pesquisa"
           type="submit"
           data-testid="query-button"
           onClick={ this.acessarAPI }

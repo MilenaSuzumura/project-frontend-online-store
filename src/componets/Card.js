@@ -11,14 +11,14 @@ class Card extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div id="teste03" data-testid="product">
+      <div className="cards" data-testid="product">
         <Link to={ `/product/${product.id}` } data-testid="product-detail-link">
           <p>{product.title}</p>
           <img src={ product.thumbnail } alt={ product.title } />
           <p>{product.price}</p>
         </Link>
         <button
-          id="teste05"
+          className="btn-card"
           type="button"
           data-testid="product-add-to-cart"
           onClick={ this.sendInformation }
