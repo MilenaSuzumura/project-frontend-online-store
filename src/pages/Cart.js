@@ -1,8 +1,9 @@
+// @ts-nocheck
 import React from 'react';
 
 export default class Cart extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       cart: [],
     };
@@ -89,6 +90,7 @@ export default class Cart extends React.Component {
         <p data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </p>
+
       )
     );
   }
